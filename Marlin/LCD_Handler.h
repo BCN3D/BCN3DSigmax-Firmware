@@ -3581,7 +3581,7 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 						
 						home_axis_from_code(false,true,true);
 						if(gif_processing_state == PROCESSING_ERROR)return;
-						left_test_print_code();
+						z_test_print_code(LEFT_EXTRUDER,0);
 						enquecommand_P(PSTR("M84"));
 						if(gif_processing_state == PROCESSING_ERROR)return;
 					}
@@ -3640,7 +3640,7 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 						
 						home_axis_from_code(false,true,true);
 						if(gif_processing_state == PROCESSING_ERROR)return;
-						right_test_print_code();
+						z_test_print_code(RIGHT_EXTRUDER,32);
 						enquecommand_P(PSTR("M84"));
 						if(gif_processing_state == PROCESSING_ERROR)return;
 					}
@@ -3725,7 +3725,7 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 								gif_processing_state = PROCESSING_TEST;
 								home_axis_from_code(true,true,true);
 								if(gif_processing_state == PROCESSING_ERROR)return;
-								left_test_print_code();
+								z_test_print_code(LEFT_EXTRUDER,0);
 								enquecommand_P(PSTR("M84"));
 								if(gif_processing_state == PROCESSING_ERROR)return;
 							}
@@ -3740,7 +3740,7 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 								gif_processing_state = PROCESSING_TEST;
 								home_axis_from_code(true,true,true);
 								if(gif_processing_state == PROCESSING_ERROR)return;
-								right_test_print_code();
+								z_test_print_code(RIGHT_EXTRUDER,32);
 								enquecommand_P(PSTR("M84"));
 								if(gif_processing_state == PROCESSING_ERROR)return;
 								
