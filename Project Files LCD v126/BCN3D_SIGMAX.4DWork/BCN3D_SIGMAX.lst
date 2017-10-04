@@ -5197,7 +5197,7 @@ file C:\Program Files (x86)\4D Labs\4D Workshop 4 IDE\include\Diablo16_Functions
 005191  000018        
 005192  000002        
 005193  000003        
-005194  000004  // generated 26/09/2017 13:16:57
+005194  000004  // generated 04/10/2017 11:16:03
 005195  000005        
 005196  000006  #MODE FLASHBANK_1
 005197  000007        
@@ -5236,7 +5236,7 @@ file C:\Users\agarciamoreno\Documents\GitHub\BCN3DSigmax-Firmware-dev\Project Fi
 
 005225  000013  #inherit "BCN3D_SIGMAXConst.inc"
 005226  000013  #inherit "BCN3D_SIGMAXConst.inc"
-005227  000001  // File generated 26/09/2017 13:16:22
+005227  000001  // File generated 04/10/2017 11:15:42
 005228  000002  // Warning! This is a generated file, any manual changes will be
 005229  000003  // lost during the next generation.
 005230  000004        

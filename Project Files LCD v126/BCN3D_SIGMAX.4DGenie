@@ -5895,7 +5895,7 @@ Form
     Alias                        Form77
     Bgtype                       Image
     Color                        BLACK
-    Image                        'Do you want to cancel the process.png'
+    Image                        'Do you want to cancel shim installation process.png'
     Source.Height                320
     Source.Left                  0
     Source.Top                   0
