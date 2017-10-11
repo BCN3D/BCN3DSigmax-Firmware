@@ -27,10 +27,10 @@
 //This is the version declaration for Sigmax, v followed by '-' first indicate the hardware, it must have 2 ditgits. Then the '-' and then the firmware, it has to have 3 digits separets by '.'. -> This is useful to
 //get the hw and fw version to Cura-BCN3D and update the new firmware
 
-#define VERSION_STRING  "02-1.2.7RC"
-#define BUILD_DATE  "|M10.09"
+#define VERSION_STRING  "02-1.2.7"
+//#define BUILD_DATE  "|M10.10"
 #define VERSION_NUMBER  127
-//#define BUILD_DATE  " "
+#define BUILD_DATE  " "
 #define UI_SerialID  "At Bottom Sticker"
 //#define DEFAULT_QUICK_GUIDE  0;
 // User-specified version info of this build to display in [Pronterface, etc] terminal window during
@@ -895,28 +895,28 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 	#endif
 	#if BCN3D_PRINTER_SETUP == BCN3D_SIGMA_PRINTER_SIGMAX
 		//Left extruder probe point
-		#define X_SIGMA_PROBE_1_LEFT_EXTR 57.5
+		#define X_SIGMA_PROBE_1_LEFT_EXTR 58.5
 		#define Y_SIGMA_PROBE_1_LEFT_EXTR 265
 		//#define Y_SIGMA_PROBE_1_LEFT_EXTR 275
 	
-		#define X_SIGMA_PROBE_2_LEFT_EXTR 57.5
+		#define X_SIGMA_PROBE_2_LEFT_EXTR 58.5
 		#define Y_SIGMA_PROBE_2_LEFT_EXTR 10
 		//#define Y_SIGMA_PROBE_2_LEFT_EXTR 10
 	
-		#define X_SIGMA_PROBE_3_LEFT_EXTR 470 //254
+		#define X_SIGMA_PROBE_3_LEFT_EXTR 468 //254
 		#define Y_SIGMA_PROBE_3_LEFT_EXTR 10
 		//#define Y_SIGMA_PROBE_3_LEFT_EXTR 10
 	
 		//Right extruder probe point
-		#define X_SIGMA_PROBE_1_RIGHT_EXTR 470//254
+		#define X_SIGMA_PROBE_1_RIGHT_EXTR 468//254
 		#define Y_SIGMA_PROBE_1_RIGHT_EXTR 265
 		//#define Y_SIGMA_PROBE_1_RIGHT_EXTR 275
 	
-		#define X_SIGMA_PROBE_2_RIGHT_EXTR 470 ///254
+		#define X_SIGMA_PROBE_2_RIGHT_EXTR 468 ///254
 		#define Y_SIGMA_PROBE_2_RIGHT_EXTR 10
 		//#define Y_SIGMA_PROBE_2_RIGHT_EXTR 10
 	
-		#define X_SIGMA_PROBE_3_RIGHT_EXTR 57.5
+		#define X_SIGMA_PROBE_3_RIGHT_EXTR 58.5
 		#define Y_SIGMA_PROBE_3_RIGHT_EXTR 10
 		//#define Y_SIGMA_PROBE_3_RIGHT_EXTR 10
 		
@@ -1039,6 +1039,11 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 	#if MOTHERBOARD == BCN3D_BOARD
 		//#define DEFAULT_AXIS_STEPS_PER_UNIT {160,160,3200,608}  //1/32 microstepping for BCN3D Board
 		#define DEFAULT_AXIS_STEPS_PER_UNIT {80,80,1600,152}	  //1/16 microstepping for BCN3D Board
+		#if BCN3D_PRINTER_SETUP == BCN3D_SIGMA_PRINTER_SIGMA
+		#define DEFAULT_AXIS_STEPS_PER_UNIT {80,80,1600,152}	  //1/16 microstepping for BCN3D Board
+		#elif BCN3D_PRINTER_SETUP == BCN3D_SIGMA_PRINTER_SIGMAX
+		#define DEFAULT_AXIS_STEPS_PER_UNIT {80,80,1600,97.8}	  //1/16 microstepping for BCN3D Board
+		#endif
 		//#define DEFAULT_AXIS_STEPS_PER_UNIT {40,40,800,102}	  //MK7 1/8 microstepping for BCN3D Board
 	#else
 		#if MOTHERBOARD == MEGATRONICS_V3
