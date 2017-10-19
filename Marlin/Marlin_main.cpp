@@ -789,15 +789,17 @@ void setup()
 	 // Delay no longer required, this will now smartly proceed once the display is awake
 	 
 	 long startupTime = millis();
+	 Serial.print(F("diplay offline"));
 	 while (!genie.Begin(MYSERIAL_SCREEN)) // Set up Genie to use Serial3, but also returns if the Display has responded and is online
 	 {
-		 Serial.println(F("display offline!"));
+		 Serial.print(F("."));
 		 delay(100);
 	 }
+	 Serial.println();
 	 if (genie.online()) // When the display has responded above, do the following once its online
 	 {
 		 Serial.println(F("display online!"));
-		 Serial.print(F("Took ")); Serial.print(millis() - startupTime); Serial.println(F(" to Start Display from Reset"));
+		 Serial.print(F("Took ")); Serial.print(millis()-startupTime); Serial.println(F(" to Start Display from Reset"));
 		 genie.AttachEventHandler(myGenieEventHandler); // Attach the user function Event Handler for processing events
 	 }
 	
@@ -1289,8 +1291,10 @@ void update_screen_printing(){
 	}
 	if(flag_sdprinting_printstop|| flag_sdprinting_printsavejob){
 		
-		bufindw = (bufindr + 1)%BUFSIZE;
-		buflen = 1;
+		if(!(card.sdispaused && (screen_printing_pause_form == screen_printing_pause_form1))){
+			bufindw = (bufindr + 1)%BUFSIZE;
+			buflen = 1;
+		}
 		doblocking =false;
 		log_X0_mmdone += x0mmdone/axis_steps_per_unit[X_AXIS];
 		log_X1_mmdone += x1mmdone/axis_steps_per_unit[X_AXIS];
