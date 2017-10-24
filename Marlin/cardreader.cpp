@@ -1,3 +1,9 @@
+/*
+- cardreader.cpp - This library manage the communication between MCU and SD card module
+Last Update: 16/10/2017
+Author: Alejandro Garcia (S3mt0x)
+*/
+
 #include "Marlin.h"
 #include "cardreader.h"
 #include "ultralcd.h"
@@ -706,7 +712,6 @@ int CardReader::updir()
 	{
 		--workDirDepth;
 		workDir = workDirParents[0];
-		int d;
 		for (int d = 0; d < workDirDepth; d++)
 		workDirParents[d] = workDirParents[d+1];
 		
