@@ -890,6 +890,7 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 							quickStop();
 						}
 					}
+					break;
 					
 					
 					
