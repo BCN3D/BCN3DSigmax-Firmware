@@ -5133,7 +5133,7 @@ inline void ListFileListENTERBACKFORLDERSD(){
 		#else
 		genie.WriteObject(GENIE_OBJ_FORM, FORM_ERROR_SCREEN, 0);
 		genie.WriteStr(STRING_ERROR_MESSAGE,"ERROR: INSERT SDCARD");//Printing form
-		gif_processing_state == PROCESSING_ERROR =  true;
+		gif_processing_state = PROCESSING_ERROR;
 		screen_sdcard = true;
 		#endif
 	}
