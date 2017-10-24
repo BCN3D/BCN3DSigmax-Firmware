@@ -5,13 +5,11 @@
 */
 
 #include "SD_ListFiles.h"
-
 #include "genieArduino.h"
 #include "Touch_Screen_Definitions.h"
 #include "Marlin.h"
 #include "Configuration.h"
 #include "stepper.h"
-#include "temperature.h"
 #include "cardreader.h"
 
 
@@ -20,8 +18,6 @@ Listfiles::Listfiles(){
 	segundos = -1;
 	filmetros1 = 0 ,filmetros2=0;
 	filgramos1 = 0 ,filgramos2=0;
-	commandline[50];
-	commandline2[18];
 	simplify3D = -1;
 }
 
@@ -195,12 +191,13 @@ int Listfiles::extract_data_Simplify(void){
 	return Simplify_ok;
 }
 void Listfiles::extract_data(void){
-	dias=-1, horas=-1, minutos -1, segundos = -1;
+	dias=-1, horas=-1, minutos= -1, segundos= -1;
 	char a[10],b[10],c[10];
 	if (simplify3D == 0){
-		sscanf_P( commandline, PSTR(";TIME: %ld"), &segundos);
-		if(segundos == -1){
-			sscanf_P( commandline, PSTR(";Print time: %d %s %d %s %d %s"), &dias, a, &horas, b, &minutos, c);
+		sscanf_P(commandline, PSTR(";TIME:%ld"), &segundos);
+		if(segundos < 0){
+			segundos = -1;
+			sscanf_P(commandline, PSTR(";Print time: %d %s %d %s %d %s"), &dias, a, &horas, b, &minutos, c);
 			if(dias !=-1){
 				//if(minutos !=-1)return;
 				if(minutos !=-1);
@@ -210,14 +207,14 @@ void Listfiles::extract_data(void){
 						horas = dias;
 						dias = 0;
 						//return;
-					}else{
+						}else{
 						minutos = dias;
 						horas = 0;
 						dias = 0;
 					}
 				}
 			}
-		}else{
+			}else{
 			horas = 0;
 			minutos = 0;
 			dias = 0;
@@ -238,9 +235,6 @@ int Listfiles::check_extract_ensure_duplication_print(void){
 	
 	
 	card.openFile(card.filename, true);
-
-	char serial_char='\0';
-	int posi = 0;
 	int linecomepoint=0;
 	simplify3D=-1;
 	while(linecomepoint < 15 && !card.isEndFile()){
@@ -269,7 +263,6 @@ int Listfiles::check_extract_ensure_duplication_print(void){
 	}
 	card.setIndex(0);// go to init
 	linecomepoint = 0;
-	posi = 0;
 	if(simplify3D){
 		while(linecomepoint < 250 && !card.isEndFile()){
 			memset(commandline, '\0', sizeof(commandline) );
@@ -331,28 +324,41 @@ uint32_t digit = 0;
 	{
 		digit = num % 10;
 		num = num / 10;
-		printf("%d\n", digit);
 	}
 	return digit;
 }
 void Listfiles::extract_data1(void){
-	
-	filgramos1 = 0;
-	filgramos2 = 0;
-	uint32_t metros = 0;
-	uint32_t metros2 = 0;
+	filgramos1 = -1;
+	filmetros2 = -1;
+	filmetros1 = -1;
+	filgramos2 = -1;
+	int32_t metros = 0;
+	int32_t metros2 = 0;
 	if(simplify3D == 0){
 		if(segundos !=-1){
-			sscanf_P(commandline, PSTR(";Filament used: %lu.%lum"), &metros, &metros2);
+			sscanf_P(commandline, PSTR(";Filament used: %ld.%ldm"), &metros, &metros2);
+			if(metros<0 || metros2<0){metros = 0;metros2=0;return;}
 			metros2 = get_firstdigit_from_integer(metros2);
 			filgramos1 = (int) 7.974264375* (metros + (metros2/10.0));//filamentDensity = 1.25; distanceMultiplier = pi * (2.85/2)^2 * filamentDensity; grams = distanceFromGcodeInMeters * distanceMultiplier
-		}else{
+			}else{
 			sscanf_P(commandline, PSTR(";Filament used: %d.%dm %d.%dg"), &filmetros1, &filmetros2, &filgramos1, &filgramos2);
+			if(filgramos1 < 0){
+				filgramos1 = 0;
+				filmetros2 = 0;
+				filmetros1 = 0;
+				filgramos2 = 0;
+			}
 		}
 		
 	}
 	else if ( simplify3D == 1){
 		sscanf_P(commandline, PSTR(";   Plastic weight: %d.%dg"), &filgramos1, &filgramos2);
+		if(filgramos1 < 0){
+			filgramos1 = 0;
+			filmetros2 = 0;
+			filmetros1 = 0;
+			filgramos2 = 0;
+		}
 	}
 
 }

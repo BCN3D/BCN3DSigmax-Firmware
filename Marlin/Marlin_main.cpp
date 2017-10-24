@@ -310,7 +310,6 @@ bool Step_First_Start_Wizard = false; // State
 /////// end First Start Wizard	/////////
 
 ////// Temperatures of current material for two extruders //////
-#pragma region temperatures
 
 int load_temp_l;
 int unload_temp_l;
@@ -334,7 +333,6 @@ int preheat_E0_value;
 int preheat_E1_value;
 int preheat_B_value;
 
-#pragma endregion temperatures
 
 ////// end Temperatures of current material for two extruders //////
 bool screen_change_nozz1up = false;
@@ -2386,7 +2384,7 @@ void touchscreen_update() //Updates the Serial Communications with the screen
 	
 	
 	
-	genie.DoEvents(); //Processes the TouchScreen Queued Events. Calls LCD_Handler.h ->myGenieEventHandler()
+	genie.DoEvents(0); //Processes the TouchScreen Queued Events. Calls LCD_Handler.h ->myGenieEventHandler()
 }
 #endif //SIGMA TOUCHSCREEN
 
@@ -2507,8 +2505,7 @@ void get_command()
 	if(!card.sdprinting || serial_count!=0){ //Detects if printer is paused
 		#ifdef SIGMA_TOUCH_SCREEN
 		
-		static long waitperiod=millis();
-		
+				
 		
 		//*********PAUSE POSITION AND RESUME POSITION IN PROBES
 		if (flag_sdprinting_pausepause && !flag_sdprinting_pauseresume){
@@ -2621,7 +2618,6 @@ void get_command()
 					comment_mode = true;
 					memset( cmdbuffer[bufindw], '\0', sizeof(cmdbuffer[bufindw]));
 					card.setIndex(fileraftstart);
-					char string[MAX_CMD_SIZE];
 					//float z_dif = current_z_raft_seen-raft_z_init;
 					//sprintf_P(cmdbuffer[bufindw], PSTR("G92 E0 R%d Z%d.%d%d%d"), raft_line_counter_g, (int)z_dif,(int)(z_dif*10)%10,(int)(z_dif*100)%10,(int)(z_dif*1000)%10);
 					sprintf_P(cmdbuffer[bufindw], PSTR("G92 E0 Z0 R%d"), raft_line_counter_g);
@@ -3311,7 +3307,6 @@ static void dock_sled(bool dock, int offset=0) {
 }
 #endif
 
-#pragma region GCODES
 
 inline void gcode_G0_G1(){
 	
@@ -4657,7 +4652,6 @@ inline void gcode_G34(){
 	}
 	
 	//We have to save the active extruder.
-	int saved_active_extruder = active_extruder;
 	
 	//Starting Calibration WIZARD
 	plan_bed_level_matrix.set_to_identity();
@@ -4702,14 +4696,6 @@ inline void gcode_G34(){
 	Serial.println(current_position[Z_AXIS]);
 
 	float z_at_pt_1 = probe_pt(X_SIGMA_PROBE_1_LEFT_EXTR,Y_SIGMA_PROBE_1_LEFT_EXTR, Z_RAISE_BEFORE_PROBING);
-	/*float z_at_pt_1_0 = probe_pt(X_SIGMA_PROBE_1_LEFT_EXTR,Y_SIGMA_PROBE_1_LEFT_EXTR-30, current_position[Z_AXIS] + Z_RAISE_BEFORE_PROBING);
-	float z_at_pt_1_1 = probe_pt(X_SIGMA_PROBE_1_LEFT_EXTR,Y_SIGMA_PROBE_1_LEFT_EXTR-60, current_position[Z_AXIS] + Z_RAISE_BEFORE_PROBING);
-	float z_at_pt_1_2 = probe_pt(X_SIGMA_PROBE_1_LEFT_EXTR,Y_SIGMA_PROBE_1_LEFT_EXTR-90, current_position[Z_AXIS] + Z_RAISE_BEFORE_PROBING);
-	float z_at_pt_1_3 = probe_pt(X_SIGMA_PROBE_1_LEFT_EXTR,Y_SIGMA_PROBE_1_LEFT_EXTR-120, current_position[Z_AXIS] + Z_RAISE_BEFORE_PROBING);
-	float z_at_pt_1_4 = probe_pt(X_SIGMA_PROBE_1_LEFT_EXTR,Y_SIGMA_PROBE_1_LEFT_EXTR-150, current_position[Z_AXIS] + Z_RAISE_BEFORE_PROBING);
-	float z_at_pt_1_5 = probe_pt(X_SIGMA_PROBE_1_LEFT_EXTR,Y_SIGMA_PROBE_1_LEFT_EXTR-180, current_position[Z_AXIS] + Z_RAISE_BEFORE_PROBING);
-	float z_at_pt_1_6 = probe_pt(X_SIGMA_PROBE_1_LEFT_EXTR,Y_SIGMA_PROBE_1_LEFT_EXTR-210, current_position[Z_AXIS] + Z_RAISE_BEFORE_PROBING);
-	float z_at_pt_1_7 = probe_pt(X_SIGMA_PROBE_1_LEFT_EXTR,Y_SIGMA_PROBE_1_LEFT_EXTR-235, current_position[Z_AXIS] + Z_RAISE_BEFORE_PROBING);*/
 	float z_at_pt_2 = probe_pt(X_SIGMA_PROBE_2_LEFT_EXTR,Y_SIGMA_PROBE_2_LEFT_EXTR, current_position[Z_AXIS] + Z_RAISE_BEFORE_PROBING);
 	float z_at_pt_3 = probe_pt(X_SIGMA_PROBE_3_LEFT_EXTR,Y_SIGMA_PROBE_3_LEFT_EXTR, current_position[Z_AXIS] + Z_RAISE_BEFORE_PROBING);
 	
@@ -4833,8 +4819,7 @@ inline void gcode_G34(){
 	
 	//Voltes cargols
 	
-	float pas_M5 = PAS_M5;
-
+	
 
 	SERIAL_PROTOCOLPGM("Valor dZ2:  ");
 	Serial.println(dz2);
@@ -5545,9 +5530,6 @@ inline void gcode_G92(){
 	
 }
 
-#pragma endregion GCODES
-
-#pragma region MCODES
 
 inline void gcode_M0_M1(){
 	#ifdef ULTIPANEL
@@ -8058,9 +8040,7 @@ inline void gcode_M851(){
 	#endif // CUSTOM_M_CODE_SET_Z_PROBE_OFFSET
 }
 
-#pragma endregion MCODES
 
-#pragma region TCODES
 inline void gcode_T0_T1(){
 	tmp_extruder = code_value();
 	time_inactive_extruder[active_extruder]=0;
@@ -8294,7 +8274,6 @@ void gcode_T0_T1_auto(int code){
 	}
 	
 }
-#pragma endregion TCODES
 
 
 
@@ -9978,7 +9957,7 @@ void z_test_print_code(int tool, float x_offset){
 	float initial_x_pos = 144.5 + x_offset;
 	float initial_y_pos = 183.5;
 	float initial_z_pos = 0.3;
-	float z_layer_test = 0.2;
+	//float z_layer_test = 0.2;
 	
 	#if BCN3D_PRINTER_SETUP == BCN3D_SIGMA_PRINTER_SIGMA
 	current_position[X_AXIS] = initial_x_pos;
@@ -10114,7 +10093,7 @@ void bed_test_print_code(float x_offset, float y_offset, int zline){
 	float initial_x_pos = NOZZLE_PARK_DISTANCE_BED_X0 + 113 + x_offset;
 	float initial_y_pos = 275 + y_offset;
 	float initial_z_pos = 0.4 + 0.1*zline;
-	float z_layer_test = 0.2;
+	//float z_layer_test = 0.2;
 	
 	#if BCN3D_PRINTER_SETUP == BCN3D_SIGMA_PRINTER_SIGMA
 	current_position[X_AXIS] = initial_x_pos;
