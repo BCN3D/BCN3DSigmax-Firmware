@@ -13,6 +13,7 @@
 	#include "Marlin.h"
 	#include "Configuration.h"
 	#include "stepper.h"
+	#include "temperature.h"
 	#include "cardreader.h"
 	
 	

@@ -8,6 +8,7 @@
 #define TOUCH_SCREEN_DEFINITIONS_H_
 
 
+#pragma region FORMS
 //Form
 //without form declared///////////////////////////////
 #define FORM_SDPRINTING_STOPPRINT				1
@@ -475,6 +476,7 @@
 	
 #define FORN_SETUPASSISTANT_SUCCESS		72
 	#define GIF_SETUPASSISTANT_SUCCESS		22
+#pragma endregion FORMS
 
 
 #endif 

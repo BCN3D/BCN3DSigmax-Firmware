@@ -136,7 +136,7 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 				//******PRINTING****
 				
 				switch(Event.reportObject.index) {
-					
+					#pragma region Printing_screen
 					case BUTTON_SDPRINTING_SETTINGS:
 					if (millis() >= waitPeriod_button_press){
 						
@@ -367,10 +367,10 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 					}
 					break;
 					
-					
+					#pragma endregion Printing_screen
 					
 					//*****Printing Settings*****
-					
+					#pragma region Printing Settings
 					
 					case  BUTTON_SDPRINTTING_SETINGS_SPEED_UP:
 					screen_change_speedup = true;
@@ -405,6 +405,9 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 					break;
 					
 					
+					#pragma endregion Printing Settings
+					
+					#pragma region Insert_Remove_Fil
 					
 					case BUTTON_UTILITIES_FILAMENT_UNLOAD_BACK:
 					
@@ -845,7 +848,10 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 						}
 					}
 					break;
+					#pragma endregion Insert_Remove_Fil
 					
+					
+					#pragma region AdjustFilament
 					case BUTTON_UTILITIES_FILAMENT_ADJUST_ACCEPT:
 					
 					if(!flag_utilities_filament_acceptok)
@@ -891,7 +897,9 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 						}
 					}
 					
+					#pragma endregion AdjustFilament
 					
+					#pragma region PURGEpause
 					
 					//****************PURGE BUTTONS******
 					case BUTTON_UTILITIES_FILAMENT_PURGE_SELECT0:
@@ -1033,7 +1041,8 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 					}
 					break;
 					//************************************
-					
+					#pragma endregion PURGEpause
+					#pragma region SuccessScreensPrint
 					case BUTTON_UTILITIES_FILAMENT_SUCCESS:
 					if (printer_state == STATE_LOADUNLOAD_FILAMENT)
 					{
@@ -1101,7 +1110,7 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 						
 					}
 					break;
-					
+					#pragma endregion SuccessScreensPrin
 					
 					
 
@@ -1307,7 +1316,7 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 				float value;
 				switch(Event.reportObject.index){
 					//*****SD Gcode Selection*****
-					
+					#pragma region SD Gcode Selector
 					
 					case BUTTON_SDLIST_SELECT0:
 					flag_sdlist_select0 = true;
@@ -1446,7 +1455,9 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 						waitPeriod_button_press=millis()+WAITPERIOD_PRESS_BUTTON;
 					}
 					break;
+					#pragma endregion SD Gcode Selector
 					
+					#pragma region PREHEAT
 					case BUTTON_UTILITIES_MAINTENANCE:
 					if (millis() >= waitPeriod_button_press){
 						genie.WriteObject(GENIE_OBJ_FORM, FORM_UTILITIES_MAINTENANCE, 0);
@@ -1525,7 +1536,9 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 					flag_temp_gifbed = false;
 					break;
 					
+					#pragma endregion PREHEAT
 					
+					#pragma region RecoveyPrint
 					
 					case BUTTON_RECOVERY_PRINT_ASK_ACCEPT:
 					if (millis() >= waitPeriod_button_press){
@@ -1579,7 +1592,9 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 					}
 					break;
 					
+					#pragma endregion RecoveyPrint
 					
+					#pragma region Maintenance
 					
 					case BUTTON_UTILITIES_MAINTENANCE_ZADJUST:
 					if (millis() >= waitPeriod_button_press){
@@ -1684,7 +1699,7 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 					}
 					break;
 					
-					
+					#pragma region Nylon
 					case BUTTON_UTILITIES_MAINTENANCE_NYLONCLEANING_BACK:
 					if (millis() >= waitPeriod_button_press){
 						
@@ -1844,6 +1859,8 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 					}
 					break;
 					
+					#pragma endregion Nylon
+					#pragma region Zset
 					
 					case BUTTON_MAINTENANCE_ZADJUST_TOP:
 					if (millis() >= waitPeriod_button_press){
@@ -1905,7 +1922,11 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 					}
 					break;
 					
+					#pragma endregion Zset
 					
+					#pragma endregion Maintenance
+					
+					#pragma region PURGE
 					//****************PURGE BUTTONS******
 					case BUTTON_UTILITIES_FILAMENT_PURGE_SELECT0:
 					if (millis() >= waitPeriod_button_press){
@@ -2082,10 +2103,11 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 					break;
 					
 					//************************************
-					
+					#pragma endregion PURGE
 					
 					//*****INSERT/REMOVE FILAMENT*****
-										
+					#pragma region Insert_Remove_Fil
+					
 					case BUTTON_UTILITIES_FILAMENT_BACK:
 					if (millis() >= waitPeriod_button_press){
 						
@@ -2897,9 +2919,10 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 					}
 					break;
 					
-										
-					//*****AdjustFilament******
+					#pragma endregion Insert_Remove_Fil
 					
+					//*****AdjustFilament******
+					#pragma region AdjustFilament
 					case BUTTON_UTILITIES_FILAMENT_ADJUST_ACCEPT:
 					if(!flag_utilities_filament_acceptok){
 						if (millis() >= waitPeriod_button_press){
@@ -2938,7 +2961,8 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 						}
 					}
 					break;
-										
+					#pragma endregion AdjustFilament
+					
 					//Extruder Calibrations-------------------------------------------------
 					case BUTTON_UTILITIES_CALIBRATION_CALIBFULL:
 					if (millis() >= waitPeriod_button_press){
@@ -3016,7 +3040,7 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 					
 					
 					//*****Bed Calibration*****
-					
+					#pragma region Bed Calibration
 					case BUTTON_UTILITIES_CALIBRATION_CALIBBED:
 					if (millis() >= waitPeriod_button_press){
 						waitPeriod_button_press=millis()+WAITPERIOD_PRESS_BUTTON2;
@@ -3108,9 +3132,9 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 					}
 					break;
 					
-					
+					#pragma endregion Bed Calibration
 					//*****Success Screens*****
-					
+					#pragma region SuccessScreens
 					case BUTTON_UTILITIES_CALIBRATION_SUCCESS: // or BUTTON_SUCCESS_FILAMENT_OK
 					if (printer_state == STATE_CALIBRATION){
 						if (millis() >= waitPeriod_button_press){
@@ -3279,9 +3303,10 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 					}
 					#endif
 					break;
-										
-					//***** Calibration XYZ *****
+					#pragma endregion SuccessScreens
 					
+					//***** Calibration XYZ *****
+					#pragma region CalibrationsXYZ
 					case BUTTON_UTILITIES_CALIBRATION_CALIBFULL_RESULTSX_SELECT1:
 					if (millis() >= waitPeriod_button_press){
 						Full_calibration_X_set(0.5);
@@ -4209,7 +4234,11 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 					}
 					break;
 					
-										
+					#pragma endregion CalibrationsXYZ
+					
+					
+					#pragma region Manual Fine Calibration
+					
 					case BUTTON_UTILITIES_CALIBRATION_MANUAL_BACK:
 					if (millis() >= waitPeriod_button_press){
 						
@@ -4390,10 +4419,16 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 						waitPeriod_button_press=millis()+WAITPERIOD_PRESS_BUTTON;
 					}
 					break;
-									
+					
+					
+					#pragma endregion Manual Fine Calibration
+					
+					
+					
+					
 					
 					//***** Info Screens *****
-					
+					#pragma region Info Screens
 					
 					//Backing from INFO SCREENS
 					case BUTTON_UTILITIES_CALIBRATION_BACK:
@@ -4509,6 +4544,9 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 					}
 					break;
 					
+					#pragma endregion Info Screens
+					
+					#pragma region Setup Assistant
 					case BUTTON_SETUPASSISTANT_YES:
 					if (millis() >= waitPeriod_button_press){
 						
@@ -4591,7 +4629,9 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 						waitPeriod_button_press=millis()+WAITPERIOD_PRESS_BUTTON;
 					}
 					break;
-										
+					
+					#pragma endregion Setup Assistant
+					
 					
 					
 					
@@ -4710,18 +4750,13 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 	}
 }
 
-void setfilenames(int jint){
-	unsigned int count = 22;
+inline void setfilenames(int jint){
+	int count = 22;
 	char buffer[count+3];
 	int x = 0;
 	memset( buffer, '\0', sizeof(buffer));
-	if (String(card.longFilename).length() == 0){
-		strcpy(buffer, card.filename);
-		genie.WriteStr(stringfilename[jint],buffer);//Printing form
-		genie.WriteStr(stringfiledur[jint],listsd.commandline2);//Printing form
-	}
-	else if (String(card.longFilename).length() > count){
-		for (unsigned int i = 0; i<count ; i++)
+	if (String(card.longFilename).length() > count){
+		for (int i = 0; i<count ; i++)
 		{
 			if (card.longFilename[i] == '.') i = count +10; //go out of the for
 			else if(i == 0) buffer[i]=card.longFilename[x];
@@ -4731,16 +4766,14 @@ void setfilenames(int jint){
 			x++;
 			//Serial.print(i);
 		}
-		buffer[count]='.';
-		buffer[count+1]='.';
-		buffer[count+2]='.';
-		buffer[count+3]='\0';
-		genie.WriteStr(stringfilename[jint],buffer);//Printing form
+		buffer[count]='\0';
+		char* buffer2 = strcat(buffer,"...\0");
+		genie.WriteStr(stringfilename[jint],buffer2);//Printing form
 		genie.WriteStr(stringfiledur[jint],listsd.commandline2);//Printing form
-		//memset( buffer2, '\0', sizeof(buffer2));
+		memset( buffer2, '\0', sizeof(buffer2));
 	}
 	else {
-		for (unsigned int i = 0; i<String(card.longFilename).length(); i++)	{
+		for (int i = 0; i<String(card.longFilename).length(); i++)	{
 			if (card.longFilename[i] == '.') i = String(card.longFilename).length() +10; //go out of the for
 			else if(i == 0) buffer[i]=card.longFilename[x];
 			else {
@@ -4755,7 +4788,7 @@ void setfilenames(int jint){
 		//Is a file
 		//genie.WriteObject(GENIE_OBJ_USERIMAGES,0,0);
 	}
-	Serial.println(buffer);
+	//Serial.println(buffer);
 }
 inline void ListFilesParsingProcedure(int vecto, int jint){
 	char Workdir[20];
@@ -5140,16 +5173,15 @@ inline void ListFileListENTERBACKFORLDERSD(){
 	
 }
 inline void setfoldernames(int jint){
-	unsigned int count = 22;
-	char buffer[count+4];
+	int count = 22;
+	char buffer[count+3];
 	int x = 0;
 	memset( buffer, '\0', sizeof(buffer));
 	if (String(card.longFilename).length() == 0){
-		strcpy(buffer, card.filename);
-		genie.WriteStr(stringfilename[jint],buffer);//Printing form
+		genie.WriteStr(stringfilename[jint],card.filename);//Printing form
 	}
 	else if (String(card.longFilename).length() > count){
-		for (unsigned int i = 0; i<count ; i++)
+		for (int i = 0; i<count ; i++)
 		{
 			if (card.longFilename[i] == '.') i = count +10; //go out of the for
 			else if(i == 0) buffer[i]=card.longFilename[x];
@@ -5159,16 +5191,14 @@ inline void setfoldernames(int jint){
 			x++;
 			//Serial.print(i);
 		}
-		buffer[count]='.';
-		buffer[count+1]='.';
-		buffer[count+2]='.';
-		buffer[count+3]='\0';
+		buffer[count]='\0';
+		char* buffer2 = strcat(buffer,"...\0");
 		
-		genie.WriteStr(stringfilename[jint],buffer);//Printing form
-		//memset( buffer2, '\0', sizeof(buffer2));
+		genie.WriteStr(stringfilename[jint],buffer2);//Printing form
+		memset( buffer2, '\0', sizeof(buffer2));
 	}
 	else {
-		for (unsigned int i = 0; i<String(card.longFilename).length(); i++)	{
+		for (int i = 0; i<String(card.longFilename).length(); i++)	{
 			if (card.longFilename[i] == '.') i = String(card.longFilename).length() +10; //go out of the for
 			else if(i == 0) buffer[i]=card.longFilename[x];
 			else {
@@ -5182,7 +5212,7 @@ inline void setfoldernames(int jint){
 		//Is a file
 		//genie.WriteObject(GENIE_OBJ_USERIMAGES,0,0);
 	}
-	Serial.println(buffer);
+	//Serial.println(buffer);
 	
 	
 }
