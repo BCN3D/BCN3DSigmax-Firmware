@@ -1031,18 +1031,18 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 #endif
 #define CALIB_FEEDRATE_ZAXIS 6*60 // bed homing speeds (mm/min)
 // default settings if screen not defined
-#ifndef SIGMA_TOUCH_SCREEN
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {80,80,2560,96.43}  // default steps per unit for Ultimaker
-#endif
+//#ifndef SIGMA_TOUCH_SCREEN
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   {80,80,2560,96.43}  // default steps per unit for Ultimaker
+//#endif
 
 #ifdef SIGMA_TOUCH_SCREEN //If Sigma Touch Screen enabled
 	#if MOTHERBOARD == BCN3D_BOARD
 		//#define DEFAULT_AXIS_STEPS_PER_UNIT {160,160,3200,608}  //1/32 microstepping for BCN3D Board
-		#define DEFAULT_AXIS_STEPS_PER_UNIT {80,80,1600,152}	  //1/16 microstepping for BCN3D Board
+		//#define DEFAULT_AXIS_STEPS_PER_UNIT {80,80,1600,152}	  //1/16 microstepping for BCN3D Board
 		#if BCN3D_PRINTER_SETUP == BCN3D_SIGMA_PRINTER_SIGMA
 		#define DEFAULT_AXIS_STEPS_PER_UNIT {80,80,1600,152}	  //1/16 microstepping for BCN3D Board
 		#elif BCN3D_PRINTER_SETUP == BCN3D_SIGMA_PRINTER_SIGMAX
-		#define DEFAULT_AXIS_STEPS_PER_UNIT {80,80,1600,97.8}	  //1/16 microstepping for BCN3D Board
+		#define DEFAULT_AXIS_STEPS_PER_UNIT {80,80,1600,503.77}	  //1/16 microstepping for BCN3D Board
 		#endif
 		//#define DEFAULT_AXIS_STEPS_PER_UNIT {40,40,800,102}	  //MK7 1/8 microstepping for BCN3D Board
 	#else
@@ -1059,7 +1059,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 #endif
 
 
-#define DEFAULT_MAX_FEEDRATE          {200, 200, 15, 60}    // (mm/sec)
+#define DEFAULT_MAX_FEEDRATE          {200, 200, 15, 40}    // (mm/sec)
 #define DEFAULT_MAX_ACCELERATION      {2250,2250,80,800}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
 #define DEFAULT_HYSTERESIS_MM         0, 0, 0, 0  // X, Y, Z, E hysteresis in mm. These are the extra distances that are performed when an axis changes direction to compensate for any mechanical hysteresis your printer has.
 #define DEFAULT_HYSTERESIS
