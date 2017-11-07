@@ -4054,6 +4054,7 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 							gif_processing_state = PROCESSING_DEFAULT;
 							doblocking= true;
 							home_axis_from_code(true,true,true);
+							gif_processing_state = PROCESSING_STOP;
 							genie.WriteObject(GENIE_OBJ_FORM,FORM_UTILITIES_CALIBRATION_CALIBFULL_GOCALIBX,0);
 							
 							}else if(flag_utilities_calibration_zcomensationmode_gauges == 2888){
