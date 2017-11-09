@@ -784,13 +784,12 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 						{ //Inserting...
 							genie.WriteObject(GENIE_OBJ_FORM,FORM_PROCESSING,0);
 							gif_processing_state = PROCESSING_DEFAULT;
-							delay(550);
 							plan_set_position(extruder_offset[X_AXIS][which_extruder], current_position[Y_AXIS], current_position[Z_AXIS], current_position[E_AXIS]);
-							#if BCN3D_PRINTER_SETUP == BCN3D_SIGMA_PRINTER_SIGMA
+							/*#if BCN3D_PRINTER_SETUP == BCN3D_SIGMA_PRINTER_SIGMA
 							current_position[X_AXIS] = 155;
 							#else
 							current_position[X_AXIS] = 155 + X_OFFSET_CALIB_PROCEDURES;
-							#endif
+							#endif*/
 							plan_buffer_line(current_position[X_AXIS],current_position[Y_AXIS], current_position[Z_AXIS], current_position[E_AXIS], XY_TRAVEL_SPEED*1.5,which_extruder);
 							st_synchronize();
 							SERIAL_PROTOCOLPGM("Loading:\n");
@@ -858,20 +857,17 @@ void myGenieEventHandler(void) //Handler for the do.Events() function
 					{
 						
 						if (millis() >= waitPeriod_button_press){
-							genie.WriteObject(GENIE_OBJ_FORM,FORM_PROCESSING,0);
-							gif_processing_state = PROCESSING_DEFAULT;
+							genie.WriteObject(GENIE_OBJ_FORM,FORM_UTILITIES_FILAMENT_SUCCESS,0);
+							genie.WriteObject(GENIE_OBJ_VIDEO,GIF_UTILITIES_FILAMENT_SUCCESS,0);
+							gif_processing_state = PROCESSING_SUCCESS;
+							printer_state = STATE_LOADUNLOAD_FILAMENT;
 							current_position[X_AXIS] = extruder_offset[X_AXIS][which_extruder];
 							plan_buffer_line(current_position[X_AXIS],current_position[Y_AXIS], current_position[Z_AXIS], current_position[E_AXIS], XY_TRAVEL_SPEED*1.5,which_extruder);
 							plan_set_position(extruder_offset[X_AXIS][active_extruder], current_position[Y_AXIS], current_position[Z_AXIS], current_position[E_AXIS]);
 							current_position[X_AXIS] = extruder_offset[X_AXIS][active_extruder];
 							setTargetHotend((float)Temp_ChangeFilament_Saved, which_extruder);
 							st_synchronize();
-							gif_processing_state = PROCESSING_STOP;
-							touchscreen_update();
-							printer_state = STATE_LOADUNLOAD_FILAMENT;
-							genie.WriteObject(GENIE_OBJ_FORM,FORM_UTILITIES_FILAMENT_SUCCESS,0);
-							genie.WriteObject(GENIE_OBJ_VIDEO,GIF_UTILITIES_FILAMENT_SUCCESS,0);
-							gif_processing_state = PROCESSING_SUCCESS;
+							
 							
 						}
 					}
