@@ -113,7 +113,7 @@
 #endif
 
 #ifndef BCN3D_PRINTER_SETUP
-	#define BCN3D_PRINTER_SETUP BCN3D_SIGMA_PRINTER_SIGMAX
+	#define BCN3D_PRINTER_SETUP BCN3D_SIGMA_PRINTER_SIGMA
 #endif
 
 #ifndef BCN3D_SCREEN_VERSION_SETUP
@@ -1058,24 +1058,44 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 	#endif
 #endif
 
+#if BCN3D_PRINTER_SETUP == BCN3D_SIGMA_PRINTER_SIGMA
+	#define DEFAULT_MAX_FEEDRATE          {200, 200, 12, 60}    // (mm/sec)
+	#define DEFAULT_MAX_ACCELERATION      {2250,2250,80,800}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
+	#define DEFAULT_HYSTERESIS_MM         0, 0, 0, 0  // X, Y, Z, E hysteresis in mm. These are the extra distances that are performed when an axis changes direction to compensate for any mechanical hysteresis your printer has.
+	#define DEFAULT_HYSTERESIS
+	//#define DEFAULT_MAX_ACCELERATION      {2000,2000,50,1000}
+	//#define DEFAULT_MAX_FEEDRATE          {250, 250, 3.5, 50}    // (mm/sec)
+	//#define DEFAULT_MAX_ACCELERATION      {1000,1000,100,100}    // X, Y, Z, E maximum star
 
-#define DEFAULT_MAX_FEEDRATE          {200, 200, 15, 40}    // (mm/sec)
-#define DEFAULT_MAX_ACCELERATION      {2250,2250,80,800}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
-#define DEFAULT_HYSTERESIS_MM         0, 0, 0, 0  // X, Y, Z, E hysteresis in mm. These are the extra distances that are performed when an axis changes direction to compensate for any mechanical hysteresis your printer has.
-#define DEFAULT_HYSTERESIS
-//#define DEFAULT_MAX_ACCELERATION      {2000,2000,50,1000}
-//#define DEFAULT_MAX_FEEDRATE          {250, 250, 3.5, 50}    // (mm/sec)
-//#define DEFAULT_MAX_ACCELERATION      {1000,1000,100,100}    // X, Y, Z, E maximum star
+	#define DEFAULT_ACCELERATION          2000    // X, Y, Z and E max acceleration in mm/s^2 for printing moves
+	#define DEFAULT_RETRACT_ACCELERATION  2000   // X, Y, Z and E max acceleration in mm/s^2 for retracts
+	//#define DEFAULT_ACCELERATION          1000    // X, Y, Z and E max acceleration in mm/s^2 for printing moves
+	//#define DEFAULT_RETRACT_ACCELERATION  2000   // X, Y, Z and E max acceleration in mm/s^2 for retracts
 
-#define DEFAULT_ACCELERATION          1750    // X, Y, Z and E max acceleration in mm/s^2 for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  2000   // X, Y, Z and E max acceleration in mm/s^2 for retracts
-//#define DEFAULT_ACCELERATION          1000    // X, Y, Z and E max acceleration in mm/s^2 for printing moves
-//#define DEFAULT_RETRACT_ACCELERATION  2000   // X, Y, Z and E max acceleration in mm/s^2 for retracts
+	// The speed change that does not require acceleration (i.e. the software might assume it can be done instantaneously)
+	#define DEFAULT_XYJERK                5.0    // (mm/sec)
+	#define DEFAULT_ZJERK                 0.4     // (mm/sec)
+	#define DEFAULT_EJERK                 5.0    // (mm/sec)
+#elif BCN3D_PRINTER_SETUP == BCN3D_SIGMA_PRINTER_SIGMAX
+	#define DEFAULT_MAX_FEEDRATE          {200, 200, 12, 40}    // (mm/sec)
+	#define DEFAULT_MAX_ACCELERATION      {2250,2250,80,800}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
+	#define DEFAULT_HYSTERESIS_MM         0, 0, 0, 0  // X, Y, Z, E hysteresis in mm. These are the extra distances that are performed when an axis changes direction to compensate for any mechanical hysteresis your printer has.
+	#define DEFAULT_HYSTERESIS
+	//#define DEFAULT_MAX_ACCELERATION      {2000,2000,50,1000}
+	//#define DEFAULT_MAX_FEEDRATE          {250, 250, 3.5, 50}    // (mm/sec)
+	//#define DEFAULT_MAX_ACCELERATION      {1000,1000,100,100}    // X, Y, Z, E maximum star
 
-// The speed change that does not require acceleration (i.e. the software might assume it can be done instantaneously)
-#define DEFAULT_XYJERK                12.5    // (mm/sec)
-#define DEFAULT_ZJERK                 0.4     // (mm/sec)
-#define DEFAULT_EJERK                 5.0    // (mm/sec)
+	#define DEFAULT_ACCELERATION          1750    // X, Y, Z and E max acceleration in mm/s^2 for printing moves
+	#define DEFAULT_RETRACT_ACCELERATION  2000   // X, Y, Z and E max acceleration in mm/s^2 for retracts
+	//#define DEFAULT_ACCELERATION          1000    // X, Y, Z and E max acceleration in mm/s^2 for printing moves
+	//#define DEFAULT_RETRACT_ACCELERATION  2000   // X, Y, Z and E max acceleration in mm/s^2 for retracts
+
+	// The speed change that does not require acceleration (i.e. the software might assume it can be done instantaneously)
+	#define DEFAULT_XYJERK                12.5    // (mm/sec)
+	#define DEFAULT_ZJERK                 0.4     // (mm/sec)
+	#define DEFAULT_EJERK                 5.0    // (mm/sec)
+#endif
+
 
 
 //------------------------------------------------------------------------------------------------------

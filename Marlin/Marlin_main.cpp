@@ -1315,7 +1315,7 @@ void update_screen_printing(){
 		acceleration = acceleration_old;
 		
 		SERIAL_PROTOCOLPGM(" STOP PRINT \n");
-		
+		Flag_fanSpeed_mirror=0;
 		cancel_heatup = true;
 		back_home = true;
 		home_made = false;
