@@ -240,9 +240,6 @@ extern unsigned int bed_offset_version;
 extern int flag_utilities_calibration_zcomensationmode_gauges;
 extern int fanSpeed;
 extern int Flag_fanSpeed_mirror;
-extern int sd_printing_temp_setting_offset_bed;
-extern int sd_printing_temp_setting_offset_hotent0;
-extern int sd_printing_temp_setting_offset_hotent1;
 #ifdef BARICUDA
 extern int ValvePressure;
 extern int EtoPPressure;
@@ -274,6 +271,10 @@ extern unsigned long stoptime;
 
 // Handling multiple extruders pins
 extern uint8_t active_extruder;
+extern int8_t hotend0_relative_temp;
+extern int8_t hotend1_relative_temp;
+extern bool Flag_hotend0_relative_temp;
+extern bool Flag_hotend1_relative_temp;
 
 #ifdef DIGIPOT_I2C
 extern void digipot_i2c_set_current( int channel, float current );
@@ -283,6 +284,7 @@ extern void digipot_i2c_init();
 //Rapduch
 extern Genie genie;
 void touchscreen_update();
+extern bool flag_ending_gcode;
 extern uint16_t filepointer;
 extern int8_t saved_active_extruder;
 extern String screen_status;
@@ -294,6 +296,7 @@ extern bool surfing_utilities;
 extern bool screen_sdcard;
 extern bool surfing_temps;
 extern bool is_on_printing_screen;
+extern long time_inactive_extruder[2];
 extern uint8_t which_extruder;
 extern char filament_mode;
 extern bool is_changing_filament;
@@ -315,6 +318,9 @@ extern void wake_RELAY();
 extern void home_axis_from_code(bool x_c, bool y_c, bool z_c);
 extern float saved_position[NUM_AXIS];
 extern bool flag_continue_calib;
+extern int bufindr;
+extern int bufindw;
+extern int buflen;
 extern int purge_extruder_selected;
 extern float manual_fine_calib_offset[4];
 //extern bool quick_guide;
