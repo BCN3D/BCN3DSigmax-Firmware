@@ -48,6 +48,6 @@ The `master` branch is stable  and it's currently on version `1.2.8`.
 [4]:https://github.com/MarlinFirmware/Marlin
 [5]:https://github.com/BCN3D/BCN3D-Cura-Windows/wiki/Updating-the-SD-Files-from-the-LCD-Display
 [6]:https://github.com/AlejandroGarcia92
-[7]:https://github.com/BCN3D/BCN3DSigma-Firmware/releases
+[7]:https://github.com/BCN3D/BCN3DSigmax-Firmware/releases
 [8]:https://github.com/BCN3D/BCN3D-Cura-Windows/wiki
-[9]:https://github.com/BCN3D/BCN3DSigma-Firmware/wiki
+[9]:https://github.com/BCN3D/BCN3DSigmax-Firmware/wiki
