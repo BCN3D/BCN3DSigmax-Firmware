@@ -27,10 +27,10 @@
 //This is the version declaration for Sigmax, v followed by '-' first indicate the hardware, it must have 2 ditgits. Then the '-' and then the firmware, it has to have 3 digits separets by '.'. -> This is useful to
 //get the hw and fw version to Cura-BCN3D and update the new firmware
 
-#define VERSION_STRING  "02-1.2.9RC"
-#define BUILD_DATE  "|M01.12"
+#define VERSION_STRING  "02-1.2.9"
+//#define BUILD_DATE  "|M01.15"
 #define VERSION_NUMBER  129
-//#define BUILD_DATE  " "
+#define BUILD_DATE  " "
 #define UI_SerialID  "At Bottom Sticker"
 //#define DEFAULT_QUICK_GUIDE  0;
 // User-specified version info of this build to display in [Pronterface, etc] terminal window during
@@ -141,7 +141,6 @@
 #define RAFT_Z_THRESHOLD 0.05
 //	END DUAL MODE SETTINGS
 
-#define EXTRUDERS 2
 
 // Define this to set a custom name for your generic Mendel,
 // #define CUSTOM_MENDEL_NAME "This Mendel"
