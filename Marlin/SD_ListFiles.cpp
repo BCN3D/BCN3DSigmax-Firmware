@@ -1,6 +1,6 @@
 /*
 - SD_ListFiles.cpp - A class that manages the parsing of time printing duration, filament consumption and if an gcode is a duplication print.
-Last Update: 16/10/2017
+Last Update: 15/01/2018
 Author: Alejandro Garcia (S3mt0x)
 */
 
@@ -27,7 +27,7 @@ Listfiles::Listfiles(){
 void Listfiles::get_lineduration(bool fromfilepoiter, char* name){
 	if(!fromfilepoiter){
 		card.openFile(name, true);
-		}else{
+	}else{
 		card.openFile(card.filename, true);
 	}
 	//card.openFile(card.filename, true);
@@ -61,7 +61,7 @@ void Listfiles::get_lineduration(bool fromfilepoiter, char* name){
 			extract_data();
 			if (minutos !=-1 ){
 				linecomepoint = 5;
-				}else if(segundos !=-1){
+			}else if(segundos !=-1){
 				linecomepoint = 5;
 			}
 		}
@@ -271,7 +271,7 @@ int Listfiles::check_extract_ensure_duplication_print(void){
 				if(extract_ensure_duplication_print_with_raft_simplify() == 0){
 					card.closefile();
 					return 1;
-					}else{
+				}else{
 					card.closefile();
 					return 0;
 				}
@@ -281,19 +281,19 @@ int Listfiles::check_extract_ensure_duplication_print(void){
 		}
 		
 		}else{
-		while(linecomepoint < 60 && !card.isEndFile()){
-			memset(commandline, '\0', sizeof(commandline) );
-			if (search_line_data_commentary() == -1){
-				card.closefile();
-				return 0;
-			}
-			if(extract_ensure_duplication_print_with_raft_cura() == 0){
-				card.closefile();
-				return 0;
-			}
-			linecomepoint++;
+			while(linecomepoint < 60 && !card.isEndFile()){
+				memset(commandline, '\0', sizeof(commandline) );
+				if (search_line_data_commentary() == -1){
+					card.closefile();
+					return 0;
+				}
+				if(extract_ensure_duplication_print_with_raft_cura() == 0){
+					card.closefile();
+					return 0;
+				}
+				linecomepoint++;
 
-		}
+			}
 		
 	}
 	card.closefile();
@@ -315,8 +315,8 @@ int Listfiles::extract_ensure_duplication_print_with_raft_cura(void){
 	return dupli_flag_print_raft;
 }
 uint32_t Listfiles::get_firstdigit_from_integer(uint32_t num_input){
-	uint32_t num = num_input;
-	uint32_t digit = 0;
+uint32_t num = num_input;
+uint32_t digit = 0;
 	while(num != 0)
 	{
 		digit = num % 10;

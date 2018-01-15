@@ -1,6 +1,6 @@
 /*
 - SD_ListFiles.h - A class that manages the parsing of time printing duration, filament consumption and if an gcode is a duplication print.
-Last Update: 16/10/2017
+Last Update: 15/01/2018
 Author: Alejandro Garcia (S3mt0x)
 */
 
@@ -8,16 +8,16 @@ Author: Alejandro Garcia (S3mt0x)
 #define _SD_LISTFILES_h
 
 
-#include "genieArduino.h"
-#include "Touch_Screen_Definitions.h"
-#include "Marlin.h"
-#include "Configuration.h"
-#include "stepper.h"
-#include "cardreader.h"
-
-
-
-
+	#include "genieArduino.h"
+	#include "Touch_Screen_Definitions.h"
+	#include "Marlin.h"
+	#include "Configuration.h"
+	#include "stepper.h"
+	#include "cardreader.h"
+	
+	
+	
+	
 class Listfiles
 {
 	public:
@@ -54,11 +54,11 @@ class Listfiles
 	uint32_t get_firstdigit_from_integer(uint32_t num_input);
 	int extract_data_Simplify(void);
 };
-
-extern Listfiles listsd;
-
-
-
+	
+extern Listfiles listsd;	
+	
+	
+	
 
 
 

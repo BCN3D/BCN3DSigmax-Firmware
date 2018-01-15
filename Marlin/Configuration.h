@@ -27,9 +27,9 @@
 //This is the version declaration for Sigmax, v followed by '-' first indicate the hardware, it must have 2 ditgits. Then the '-' and then the firmware, it has to have 3 digits separets by '.'. -> This is useful to
 //get the hw and fw version to Cura-BCN3D and update the new firmware
 
-#define VERSION_STRING  "02-1.2.8"
-//#define BUILD_DATE  "|M10.10"
-#define VERSION_NUMBER  128
+#define VERSION_STRING  "02-1.2.9"
+//#define BUILD_DATE  "|M01.15"
+#define VERSION_NUMBER  129
 #define BUILD_DATE  " "
 #define UI_SerialID  "At Bottom Sticker"
 //#define DEFAULT_QUICK_GUIDE  0;
@@ -125,6 +125,11 @@
 	#define PRINTER_NAME "BCN3D Sigmax"
 #endif
 
+#if BCN3D_PRINTER_SETUP == BCN3D_SIGMA_PRINTER_SIGMA
+	//#define ENABLE_DUPLI_MIRROR
+#elif BCN3D_PRINTER_SETUP == BCN3D_SIGMA_PRINTER_SIGMAX
+	#define ENABLE_DUPLI_MIRROR
+#endif
 
 #if MOTHERBOARD == MEGATRONICS_V3
 	#define PROTO1
@@ -136,7 +141,6 @@
 #define RAFT_Z_THRESHOLD 0.05
 //	END DUAL MODE SETTINGS
 
-#define EXTRUDERS 2
 
 // Define this to set a custom name for your generic Mendel,
 // #define CUSTOM_MENDEL_NAME "This Mendel"
@@ -271,6 +275,7 @@
 // 1010 is Pt1000 with 1k pullup (non standard)
 // 147 is Pt100 with 4k7 pullup
 // 110 is Pt100 with 1k pullup (non standard)
+#define RELATIVE_TEMP_PRINT
 
 #define TEMP_SENSOR_0 1
 #define TEMP_SENSOR_1 1
@@ -346,7 +351,7 @@
   #define PID_INTEGRAL_DRIVE_MAX 255  //limit for the integral term
   #define K1 0.95 //smoothing factor within the PID
  // #define PID_dT ((OVERSAMPLENR * 10.0)/(F_CPU / 64.0 / 256.0)) //sampling period of the temperature routine
-	 #define PID_dT ((16.0 * 8.0)/(F_CPU / 64.0 / 256.0)) //sampling period of the temperature routine
+  #define PID_dT ((16.0 * 8.0)/(F_CPU / 64.0 / 256.0)) //sampling period of the temperature routine
 
 
 // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
@@ -798,7 +803,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 	#define BOWDEN_LENGTH 1050
 #endif
 #define EXTRUDER_LENGTH 50
-#define INSERT_FAST_SPEED 5000	
+#define INSERT_FAST_SPEED 3600	//max speed 60mm/s
 #define INSERT_SLOW_SPEED 150
 #define REMOVE_FIL_TEMP		170
 #define INSERT_FIL_TEMP		230
@@ -1025,9 +1030,9 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 #define NUM_LINES 10
 //#define HOMING_FEEDRATE {50*60, 50*60, 4*60, 0}  // set the homing speeds (mm/min)
 #if BCN3D_PRINTER_SETUP == BCN3D_SIGMA_PRINTER_SIGMA
-	#define HOMING_FEEDRATE {60*60, 90*60, 15*60, 0} ///{75*60, 65*60, 6*60, 0}  // old homing speeds (mm/min)
+	#define HOMING_FEEDRATE {60*60, 90*60, 12*60, 0} ///{75*60, 65*60, 6*60, 0}  // old homing speeds (mm/min)
 #else
-	#define HOMING_FEEDRATE {60*60, 90*60, 15*60, 0} ///{75*60, 65*60, 6*60, 0}  // old homing speeds (mm/min)
+	#define HOMING_FEEDRATE {60*60, 90*60, 12*60, 0} ///{75*60, 65*60, 6*60, 0}  // old homing speeds (mm/min)
 #endif
 #define CALIB_FEEDRATE_ZAXIS 6*60 // bed homing speeds (mm/min)
 // default settings if screen not defined
@@ -1038,11 +1043,10 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 #ifdef SIGMA_TOUCH_SCREEN //If Sigma Touch Screen enabled
 	#if MOTHERBOARD == BCN3D_BOARD
 		//#define DEFAULT_AXIS_STEPS_PER_UNIT {160,160,3200,608}  //1/32 microstepping for BCN3D Board
-		//#define DEFAULT_AXIS_STEPS_PER_UNIT {80,80,1600,152}	  //1/16 microstepping for BCN3D Board
 		#if BCN3D_PRINTER_SETUP == BCN3D_SIGMA_PRINTER_SIGMA
 		#define DEFAULT_AXIS_STEPS_PER_UNIT {80,80,1600,152}	  //1/16 microstepping for BCN3D Board
 		#elif BCN3D_PRINTER_SETUP == BCN3D_SIGMA_PRINTER_SIGMAX
-		#define DEFAULT_AXIS_STEPS_PER_UNIT {80,80,1600,492.45}	  //1/16 microstepping for BCN3D Board
+		#define DEFAULT_AXIS_STEPS_PER_UNIT {80,80,1600,492.45}	  //1/16 microstepping for bondtech kit BCN3D
 		#endif
 		//#define DEFAULT_AXIS_STEPS_PER_UNIT {40,40,800,102}	  //MK7 1/8 microstepping for BCN3D Board
 	#else
@@ -1057,6 +1061,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 		#endif	
 	#endif
 #endif
+
 
 #if BCN3D_PRINTER_SETUP == BCN3D_SIGMA_PRINTER_SIGMA
 	#define DEFAULT_MAX_FEEDRATE          {200, 200, 12, 60}    // (mm/sec)
@@ -1095,7 +1100,6 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 	#define DEFAULT_ZJERK                 0.4     // (mm/sec)
 	#define DEFAULT_EJERK                 5.0    // (mm/sec)
 #endif
-
 
 
 //------------------------------------------------------------------------------------------------------
@@ -1342,7 +1346,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 
 //////	BED COMPENSATION G36
 
-#define RETRACT_SPEED_G36		2500
+#define RETRACT_SPEED_G36		2100
 
 
 //////	FULL CALIBRATION SETTINGS
