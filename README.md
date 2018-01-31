@@ -13,8 +13,10 @@ Please refer to the [wiki][8] in order to get instructions on how to upgrade the
 ## Features
 
 - Dual independent X extruders.
+- Duplication & Mirror modes.
 - Autolevel, autocalibration of XYZ axis.
 - LCD Touchscreen support.
+- Shims installation assisted.
 - Load/Unload filament
 - Refined firmware for better printing experience.
 
