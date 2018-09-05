@@ -1,5 +1,5 @@
 ﻿# BCN3D Sigmax Firmware based on Marlin
-![image](https://user-images.githubusercontent.com/17469944/33207836-8102a56c-d10f-11e7-9625-740bff8896ef.png)
+![image](https://user-images.githubusercontent.com/17469944/45097854-0ffd5600-b124-11e8-99c3-63885196a50f.jpg)
 
 This is the repository that contains the firmware for the BCN3D Sigmax 3D Printer. It's based on the well-known Marlin but with some modifications.
 
@@ -17,8 +17,9 @@ Please refer to the [wiki][8] in order to get instructions on how to upgrade the
 - Autolevel, autocalibration of XYZ axis.
 - LCD Touchscreen support.
 - Shims installation assisted.
-- Load/Unload filament
+- Load/Unload filament.
 - Refined firmware for better printing experience.
+- Filament Runout Sensor.
 
 This firmware was first developed by [Jordi Calduch][1] then was [Xavier Gómez][2] and now the current developer is [Alejandro Garcia][6] at [BCN3D Technologies][3]. This firmware is a rework of the popular [Marlin][4].
 
@@ -49,7 +50,7 @@ The `master` branch is stable  and it's currently on version `2.0.2`.
 [2]:https://github.com/xawox
 [3]:http://www.bcn3dtechnologies.com/
 [4]:https://github.com/MarlinFirmware/Marlin
-[5]:https://github.com/BCN3D/BCN3D-Cura-Windows/wiki/Updating-the-SD-Files-from-the-LCD-Display
+[5]:https://www.bcn3dtechnologies.com/wp-content/themes/BCN3D/pdfs/how-to-change-the-micro-sd-card-files-of-the-lcd-screen.pdf
 [6]:https://github.com/AlejandroGarcia92
 [7]:https://github.com/BCN3D/BCN3DSigmax-Firmware/releases
 [8]:https://github.com/BCN3D/BCN3D-Cura-Windows/wiki

@@ -55,3 +55,5 @@ Marlin/_vm/
 *.xml
 Marlin/__vm/Compile.vmps.xml
 *.xml
+
+register_codes.h
