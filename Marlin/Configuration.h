@@ -25,7 +25,7 @@
 // example_configurations/SCARA directory.
 //
 
-//#define BUILD_DATE  "|M09.27"
+//#define BUILD_DATE  "|M10.04"
 #define BUILD_DATE  " "
 #define UI_SerialID  "At Bottom Sticker"
 //#define DEFAULT_QUICK_GUIDE  0;
@@ -114,11 +114,11 @@
 //This is the version declaration for Sigma/x, v followed by '-' first indicate the hardware, it must have 2 ditgits. Then the '-' and then the firmware, it has to have 3 digits separets by '.'. -> This is useful to
 //get the hw and fw version to Cura-BCN3D and update the new firmware
 #if BCN3D_PRINTER_SETUP == BCN3D_PRINTER_IS_SIGMA
-	#define VERSION_STRING  "01-2.0.3"
-	#define VERSION_NUMBER  133
+	#define VERSION_STRING  "01-2.0.4"
+	#define VERSION_NUMBER  134
 #elif BCN3D_PRINTER_SETUP == BCN3D_PRINTER_IS_SIGMAX
-	#define VERSION_STRING  "02-2.0.3"	
-	#define VERSION_NUMBER  233
+	#define VERSION_STRING  "02-2.0.4"	
+	#define VERSION_NUMBER  234
 #endif
 
 
@@ -836,9 +836,9 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 #if BCN3D_PRINTER_SETUP == BCN3D_PRINTER_IS_SIGMAX
 	#define BOWDEN_LENGTH 1100
 #endif
-#define PURGE_LENGHT_UNLOAD 25
+#define PURGE_LENGHT_UNLOAD 25.0
 #define PURGE_SPEED_UNLOAD 450.0
-#define EXTRUDER_LENGTH 50
+#define EXTRUDER_LENGTH 50.0
 #define INSERT_FAST_SPEED 3600.0	//max speed 60mm/s R16/R17
 #define INSERT_FAST_R19_SPEED 2400.0	//max speed 40mm/s R18
 #define INSERT_SLOW_SPEED	150.0
