@@ -1,7 +1,6 @@
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
 
-
 ////////////////////////////////PROTOSIGMA///////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Which variables has been affected in the firmware to DHUB machines
 //SIGMA_Z_HOME_TRAVEL_SPEED , XY_SIGMA_TRAVEL_SPEED, HOMING_FEEDRATE, DEFAULT_AXIS_STEPS_PER_UNIT, DEFAULT_MAX_FEEDRATE, DEFAULT_MAX_ACCELERATION, X_MAX_POS   
@@ -25,8 +24,7 @@
 // example_configurations/SCARA directory.
 //
 
-//#define BUILD_DATE  "|M10.04"
-#define BUILD_DATE  " "
+//#define BUILD_DATE 
 #define UI_SerialID  "At Bottom Sticker"
 //#define DEFAULT_QUICK_GUIDE  0;
 // User-specified version info of this build to display in [Pronterface, etc] terminal window during
@@ -114,11 +112,11 @@
 //This is the version declaration for Sigma/x, v followed by '-' first indicate the hardware, it must have 2 ditgits. Then the '-' and then the firmware, it has to have 3 digits separets by '.'. -> This is useful to
 //get the hw and fw version to Cura-BCN3D and update the new firmware
 #if BCN3D_PRINTER_SETUP == BCN3D_PRINTER_IS_SIGMA
-	#define VERSION_STRING  "01-2.0.4"
-	#define VERSION_NUMBER  134
+	#define VERSION_STRING  "01-2.0.5"
+	#define VERSION_NUMBER  135
 #elif BCN3D_PRINTER_SETUP == BCN3D_PRINTER_IS_SIGMAX
-	#define VERSION_STRING  "02-2.0.4"	
-	#define VERSION_NUMBER  234
+	#define VERSION_STRING  "02-2.0.5"	
+	#define VERSION_NUMBER  235
 #endif
 
 
@@ -1522,6 +1520,8 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 */
 
 #define PATTERN_Z_CALIB						 0
+
+//#define ENABLE_CURA_COUNTDOWN_TIMER 
 
 #include "Configuration_adv.h"
 #include "thermistortables.h"
